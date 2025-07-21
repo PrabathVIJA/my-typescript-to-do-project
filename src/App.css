@@ -40,3 +40,13 @@
 .read-the-docs {
   color: #888;
 }
+.container {
+  width: 200px;
+  background-color: yellow;
+  margin-top: 3px;
+  display: flex;
+}
+
+.strike {
+  text-decoration: line-through;
+}

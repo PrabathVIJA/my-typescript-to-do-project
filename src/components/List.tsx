@@ -1,16 +1,30 @@
 type Task = {
   id: string;
   title: string;
+  done: boolean;
 };
 
 type ListProps = {
-  listOfTasks: Task[];
+  listOfTask: Task[];
+  deleteHandler: (id: string) => void;
+  doneHandler: (id: string) => void;
 };
-export default function List({ listOfTasks }: ListProps) {
+
+import SingleToDo from "./SingleToDo.tsx";
+export default function List({
+  listOfTask,
+  deleteHandler,
+  doneHandler,
+}: ListProps) {
   return (
     <>
-      {listOfTasks.map((task) => (
-        <div>{task.title}</div>
+      {listOfTask.map((task) => (
+        <SingleToDo
+          singleTask={task}
+          key={task.id}
+          deleteHandler={deleteHandler}
+          doneHandler={doneHandler}
+        />
       ))}
     </>
   );
