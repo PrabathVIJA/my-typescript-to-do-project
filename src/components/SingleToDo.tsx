@@ -1,18 +1,21 @@
 import { MdDone, MdDelete, MdEdit } from "react-icons/md";
 import { useState } from "react";
-type TaskProps = {
+
+type Type = {
   id: string;
   title: string;
   done: boolean;
 };
 type singleProp = {
-  singleTask: TaskProps;
+  singleTask: Type;
   deleteHandler: (id: string) => void;
   doneHandler: (id: string) => void;
+  editHandler: (id: string, title: string) => void;
 };
 export default function SingleToDo({
   singleTask,
   deleteHandler,
+  editHandler,
   doneHandler,
 }: singleProp) {
   const [taskValue, setTaskValue] = useState<string>(singleTask.title);
@@ -40,7 +43,14 @@ export default function SingleToDo({
         <button onClick={() => setEdit(true)}>
           <MdEdit />
         </button>
-        <button onClick={() => setEdit(false)}>Save</button>
+        <button
+          onClick={() => {
+            setEdit(false);
+            editHandler(singleTask.id, taskValue);
+          }}
+        >
+          Save
+        </button>
       </div>
     </>
   );

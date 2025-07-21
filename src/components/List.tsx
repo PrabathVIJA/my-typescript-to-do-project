@@ -1,13 +1,14 @@
-type Task = {
+type Type = {
   id: string;
   title: string;
   done: boolean;
 };
 
 type ListProps = {
-  listOfTask: Task[];
+  listOfTask: Type[];
   deleteHandler: (id: string) => void;
   doneHandler: (id: string) => void;
+  editHandler: (id: string, title: string) => void;
 };
 
 import SingleToDo from "./SingleToDo.tsx";
@@ -15,6 +16,7 @@ export default function List({
   listOfTask,
   deleteHandler,
   doneHandler,
+  editHandler,
 }: ListProps) {
   return (
     <>
@@ -24,6 +26,7 @@ export default function List({
           key={task.id}
           deleteHandler={deleteHandler}
           doneHandler={doneHandler}
+          editHandler={editHandler}
         />
       ))}
     </>

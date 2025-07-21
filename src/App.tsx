@@ -9,6 +9,7 @@ type Type = {
   title: string;
   done: boolean;
 };
+
 function App() {
   const [listOfTasks, setListOfTasks] = useState<Type[]>([
     {
@@ -51,6 +52,17 @@ function App() {
     setListOfTasks(updatedTask);
   }
 
+  function editHandler(id: string, editedTitle: string) {
+    const updatedTask = listOfTasks.map((task) => {
+      if (task.id === id) {
+        return { ...task, title: editedTitle };
+      } else {
+        return task;
+      }
+    });
+    setListOfTasks(updatedTask);
+  }
+
   return (
     <>
       <Input
@@ -63,6 +75,7 @@ function App() {
         listOfTask={listOfTasks}
         deleteHandler={deleteHandler}
         doneHandler={doneHandler}
+        editHandler={editHandler}
       />
     </>
   );
