@@ -33,9 +33,11 @@ export default function SingleToDo({
         ) : (
           <p className={singleTask.done ? "strike" : ""}>{taskValue}</p>
         )}
-        <button onClick={() => doneHandler(singleTask.id)}>
-          <MdDone />
-        </button>
+        {!edit && (
+          <button onClick={() => doneHandler(singleTask.id)}>
+            <MdDone />
+          </button>
+        )}
 
         <button onClick={() => deleteHandler(singleTask.id)}>
           <MdDelete />
